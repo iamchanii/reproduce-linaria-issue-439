@@ -1,26 +1,38 @@
+import { css } from 'linaria/lib';
+import { styled } from 'linaria/lib/react';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+const Flexbox = styled.div`
+    display: flex;
+`;
+
+const Work = styled.div`
+    border: 1px solid lightcoral;
+    flex: 0 0 calc(50% - 12px * 2);
+`;
+
+const Broken = styled.div`
+    border: 1px solid lightcoral;
+    flex: 0 0 calc(50% - (12px * 2));
+`;
+
+// The code below Broken does not work.
+const BrokenWithCSS = css`
+    border: 1px solid lightcoral;
+    flex: 0 0 calc(50% - (12px * 2));
+`;
+
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    return (
+        <div className="App">
+            <Flexbox>
+                <Work>Works!</Work>
+                <Broken>Broken.</Broken>
+                <div className={BrokenWithCSS}>Test</div>
+            </Flexbox>
+        </div>
+    );
+};
 
 export default App;
